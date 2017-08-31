@@ -2,5 +2,24 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Shadows Into Light', cursive;    
+    font-family: 'Shadows Into Light', cursive;   
+    text-align: center; 
+}
+
+#wrapper {
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+}
+
+.rows {
+    width: 600px;
+    height: 200px;
+}
+
+.squares {
+    width: 195px;
+    height: 197px;
+    border: 1px solid black;
+    float: left;    
 }
