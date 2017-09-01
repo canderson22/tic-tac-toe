@@ -14,12 +14,13 @@ body {
 
 .rows {
     width: 600px;
-    height: 200px;
+    height: 199px;
 }
 
 .squares {
     width: 195px;
     height: 197px;
     border: 1px solid black;
-    float: left;    
+    float: left; 
+    font-size: 120px;   
 }

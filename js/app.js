@@ -29,42 +29,43 @@ var game = {
         }
     },
     checkWinner: function(player) {
-        if(this.checkRows(player.symbol) == true) {
-            return true;
-        } else if(this.checkColumns(player.symbol) == true) {
-            return true;
-        } else if (this.checkDiagonals(player.symbol) == true) {
-            return true;
+        if(this.checkRows(player.symbol) === true) {
+            return true
+        } else if(this.checkColumns(player.symbol) === true) {
+            return true
+        } else if(this.checkDiagonals(player.symbol) === true) {
+            return true
         } else {
-            return false;
+            false
         }
     },
     checkRows: function(symbol) {
-        if ($squares[0].innerText && $squares[1].innerText && $squares[2].innerText == symbol) {
-            return true;
-        } else if($squares[3].innerText && $squares[4].innerText && $squares[5].innerText == symbol) {
-            return true;
-        } else if($squares[6].innerText && $squares[7].innerText && $squares[8].innerText == symbol) {
-            return true;
+        console.log(symbol)
+        if($squares[0].innerText == symbol && $squares[1].innerText == symbol && $squares[2].innerText == symbol) {
+            return true
+        } else if($squares[3].innerText == symbol && $squares[4].innerText == symbol && $squares[5].innerText == symbol) {
+            return true
+        } else if($squares[6].innerText == symbol && $squares[7].innerText == symbol && $squares[8].innerText == symbol) {
+            return true
         } else {
-            return false;
+            return false
         }
     },
     checkColumns: function(symbol) {
-        if ($squares[0].innerText && $squares[3].innerText && $squares[6].innerText == symbol) {
+        if ($squares[0].innerText == symbol && $squares[3].innerText == symbol && $squares[6].innerText == symbol) {
             return true;
-        } else if($squares[1].innerText && $squares[4].innerText && $squares[7].innerText == symbol) {
+        } else if($squares[1].innerText == symbol && $squares[4].innerText == symbol && $squares[7].innerText == symbol) {
             return true;
-        } else if($squares[2].innerText && $squares[5].innerText && $squares[8].innerText == symbol) {
+        } else if($squares[2].innerText == symbol && $squares[5].innerText == symbol && $squares[8].innerText == symbol) {
             return true;
         } else {
             return false;
         }
     },
     checkDiagonals: function(symbol) {
-        if($squares[0].innerText && $squares[4].innerText && $squares[8].innerText == symbol) {
+        if($squares[0].innerText == symbol && $squares[4].innerText == symbol && $squares[8].innerText == symbol) {
             return true;
-        } else if($squares[2].innerText && $squares[4].innerText && $squares[6].innerText == symbol) {
+        } else if($squares[2].innerText == symbol && $squares[4].innerText == symbol && $squares[6].innerText == symbol) {
             return true;
         } else {
             return false;
@@ -80,7 +81,6 @@ function startGame() {
     $h1.text('Player "' + game.currentPlayer.symbol + '" its your turn!');
     $wrapper.before($h1);
 }
-startGame();
 
 function winner(win) {
     var $h1 = $('<h1>');
@@ -94,9 +94,9 @@ function winner(win) {
 
 $squares.on('click', function() {
    
-    if ($(this).text() == '') {
+    if ($(this).text() === '') {
         $(this).text(game.currentPlayer.symbol);
-        if (game.checkWinner(game.currentPlayer)) {
+        if (game.checkWinner(game.currentPlayer) === true) {
             winner(game.currentPlayer.symbol)
         } else {
             game.switchPlayer();            
@@ -108,5 +108,4 @@ $squares.on('click', function() {
 
 });
 
-
-
+startGame();
