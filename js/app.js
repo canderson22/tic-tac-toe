@@ -1,3 +1,9 @@
+var runGame = function() {
+var $title = $('<h1>').text('Tic-Tac-Toe');
+var $divWrap = $('<div id="wrapper">');
+$('body').removeClass('body').empty().append($title, $divWrap);
+
+
 var $wrapper = $('#wrapper');
 function createBoard(n) {
     for (var i = 0; i < n; i++) {
@@ -40,7 +46,6 @@ var game = {
         }
     },
     checkRows: function(symbol) {
-        console.log(symbol)
         if($squares[0].innerText == symbol && $squares[1].innerText == symbol && $squares[2].innerText == symbol) {
             return true
         } else if($squares[3].innerText == symbol && $squares[4].innerText == symbol && $squares[5].innerText == symbol) {
@@ -85,27 +90,44 @@ function startGame() {
 function winner(win) {
     var $h1 = $('<h1>');
     $h1.text('"' + win + '" YOU WON!!!!!!!!!!!!');
-    $('body').empty().append($h1).css({
-        fontSize: 100,
-        background: 'red',
-        color: 'white'
-    });
+    var $resetBtn = $('<button>Play Again</button>').addClass('btn');
+    $resetBtn.on('click', function() {
+        runGame();
+    })
+    $('body').empty().append($h1, $resetBtn).addClass('body')
 }
 
+function tie() {
+    var $h1 = $('<h1>');
+    $h1.text('It"s a TIE!!!!!!!!!!!!');
+    var $resetBtn = $('<button>Play Again</button>').addClass('btn');
+    $resetBtn.on('click', function() {
+        runGame();
+    })
+    $('body').empty().append($h1, $resetBtn).addClass('body') 
+}
+
+var count = 0;
 $squares.on('click', function() {
    
     if ($(this).text() === '') {
         $(this).text(game.currentPlayer.symbol);
+        count++;
         if (game.checkWinner(game.currentPlayer) === true) {
             winner(game.currentPlayer.symbol)
+        } else if(count == 9) {
+            tie();
         } else {
             game.switchPlayer();            
         }
+        
         $h1.text('Player "' + game.currentPlayer.symbol + '" its your turn!')
     } else {
         alert('That square has been chosen already please choose another')
     }
 
 });
-
 startGame();
+
+}
+runGame();
